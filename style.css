@@ -1,0 +1,139 @@
+h1 {
+    color: red;
+    background-color: black;
+}
+
+.row{
+	width: 100%;
+	height: 7em;
+	display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.numberBox{
+	height: 5.5em;
+	width : 5.5em;
+	margin: 2.5px;
+	border-radius: 25px;
+	background: white;
+	opacity: 0.7;
+	float: left;
+	position: relative; 
+	text-align: center;
+	
+}
+
+.lockCircle{
+	border-radius: 6em;
+}
+
+
+.boxText {
+ text-align: center;
+line-height: 100%;
+font-size: xx-large;
+font-family: Verdana;
+
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.checked {
+    position: relative;
+}
+
+.checked:before, .checked:after {
+    position: absolute;
+    content: '';
+    background: black;
+    display: block;
+    width: 100%;
+    height: 16px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.checked:after {
+    -webkit-transform: rotate(45deg);  
+    transform: rotate(45deg);
+}
+
+.red{
+	background-color: red;
+}
+
+.darkred{
+background-color:#8B0000;
+}
+
+.yellow{
+	background-color: yellow;
+}
+
+.darkyellow{
+background-color:#b5b800;
+}
+
+.green{
+	background-color: green;
+}
+
+.darkgreen{
+	background-color: #006400;
+}
+
+.blue{
+	background-color: blue;
+}
+.darkblue{
+background-color:#000052;
+}
+
+.backgroundWapper{
+	height: 6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+div.solid {border-style: solid;}
+
+.scooringBox{
+	height: 5.5em;
+	width : 3em;
+	margin: 2.5px;
+	border-radius: 25px;
+	background: white;
+	float: left;
+	position: relative; 
+	text-align: center;
+}
+
+.upperText{
+	margin-top:1em;
+	margin-bottom:0;
+}
+
+.noMargin{
+	margin:0;
+}
