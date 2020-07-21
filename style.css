@@ -1,137 +1,144 @@
 h1 {
-    color: red;
-    background-color: black;
+  color: red;
+  background-color: black;
 }
 
-.row{
-	width: 100%;
-	height: 7em;
-	display: flex;
+.row {
+  width: 100%;
+  height: 7em;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
 
-.numberBox{
-	height: 5.5em;
-	width : 5.5em;
-	margin: 2.5px;
-	border-radius: 25px;
-	background: white;
-	opacity: 0.7;
-	float: left;
-	position: relative; 
-	text-align: center;
+.numberBox {
+  height: 5.5em;
+  width: 5.5em;
+  margin: 2.5px;
+  border-radius: 25px;
+  background: white;
+  opacity: 0.7;
+  float: left;
+  position: relative;
+  text-align: center;
 }
 
-.mistakeBox{
-	height: 2.75em;
-	width : 2.75em;
-	margin: 2.5px;
-	border-radius: 12.5px;	
+.mistakeBox {
+  height: 2.75em;
+  width: 2.75em;
+  margin: 2.5px;
+  border-radius: 12.5px;
 }
 
-.lockCircle{
-	border-radius: 6em;
+.lockCircle {
+  border-radius: 6em;
 }
 
 
 .boxText {
- text-align: center;
-line-height: 100%;
-font-size: xx-large;
-font-family: Verdana;
+  text-align: center;
+  line-height: 100%;
+  font-size: xx-large;
+  font-family: Verdana;
 }
 
 .noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
 .checked {
-    position: relative;
+  position: relative;
 }
 
-.checked:before, .checked:after {
-    position: absolute;
-    content: '';
-    background: black;
-    display: block;
-    width: 100%;
-    height: 16px;
-    -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
+.checked:before,
+.checked:after {
+  position: absolute;
+  content: '';
+  background: black;
+  display: block;
+  width: 100%;
+  height: 16px;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 }
 
 .checked:after {
-    -webkit-transform: rotate(45deg);  
-    transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
-.red{
-	background-color: red;
+.red {
+  background-color: red;
 }
 
-.darkred{
-background-color:#8B0000;
+.darkred {
+  background-color: #8B0000;
 }
 
-.redBorder{
+.redBorder {
   border-color: red;
 }
 
-.yellow{
-	background-color: yellow;
+.yellow {
+  background-color: yellow;
 }
 
-.yellowBorder{
+.yellowBorder {
   border-color: yellow;
 }
 
-.darkyellow{
-background-color:#b5b800;
+.darkyellow {
+  background-color: #b5b800;
 }
 
-.green{
-	background-color: green;
+.green {
+  background-color: green;
 }
 
-.greenBorder{
+.greenBorder {
   border-color: green;
 }
 
-.darkgreen{
-	background-color: #006400;
+.darkgreen {
+  background-color: #006400;
 }
 
-.blue{
-	background-color: blue;
+.blue {
+  background-color: blue;
 }
 
-.blueBorder{
+.blueBorder {
   border-color: blue;
 }
 
-.darkblue{
-background-color:#000052;
+.darkblue {
+  background-color: #000052;
 }
 
-.greyBorder{
-  border-color:#404040;
+.greyBorder {
+  border-color: #404040;
 }
 
-.backgroundWapper{
-	height: 6em;
+.backgroundWapper {
+  height: 6em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -142,26 +149,28 @@ background-color:#000052;
   padding-bottom: 2px;
 }
 
-div.solid {border-style: solid;}
-
-.scooringBox{
-	height: 5.5em;
-	width : 3em;
-	margin: 2.5px;
-	border-radius: 25px;
-	background: white;
-	float: left;
-	position: relative; 
-	text-align: center;
+div.solid {
+  border-style: solid;
 }
 
-.upperText{
-  margin-top:1em;
-	margin-bottom:0;
+.scooringBox {
+  height: 5.5em;
+  width: 3em;
+  margin: 2.5px;
+  border-radius: 25px;
+  background: white;
+  float: left;
+  position: relative;
+  text-align: center;
 }
 
-.noMargin{
-	margin:0;
+.upperText {
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+
+.noMargin {
+  margin: 0;
 }
 
 .app-container {
@@ -173,11 +182,11 @@ div.solid {border-style: solid;}
   display: block;
 }
 
-#miskateWrapper{
+#miskateWrapper {
   width: 16.5em;
 }
 
-.checkboxRow{
+.checkboxRow {
   height: 2.75em;
   display: block;
   display: flex;
@@ -186,7 +195,7 @@ div.solid {border-style: solid;}
   align-items: center;
 }
 
-#row5{
+#row5 {
   background: #8c8c8c;
 }
 
@@ -194,11 +203,11 @@ div.solid {border-style: solid;}
   font-weight: bold;
 }
 
-#resultBox{
+#resultBox {
   width: 16.5em;
 }
 
-#result{
+#result {
   margin-top: .3em;
   text-align: center;
   line-height: 100%;
@@ -209,5 +218,9 @@ div.solid {border-style: solid;}
 .thickBorder {
   border-style: solid;
   border-width: .3em;
-;}
+  ;
+}
 
+.hidden {
+  display: none;
+}

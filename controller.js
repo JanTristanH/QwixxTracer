@@ -94,7 +94,7 @@ function onEvaluate() {
 	let score = convertScore(oNumberMarkedBoxes.red) + convertScore(oNumberMarkedBoxes.yellow) + convertScore(oNumberMarkedBoxes.green) + convertScore(oNumberMarkedBoxes.blue);
 	score -= oNumberMarkedBoxes.mistake * 5;
 	$("#result").empty();
-	$("#result").css("margin","1em");
+	$("#result").css("margin", "1em");
 	$("#result").append(score);
 };
 
@@ -103,8 +103,6 @@ function fillInterimResult() {
 		//console.log(`${key}Result: ${value}`);
 		$(`#${key}Result`).empty();
 		$(`#${key}Result`).append(
-			key == "mistake" ? value * 5 :convertScore(value));
+			key == "mistake" ? value * 5 : convertScore(value));
 	}
 };
-
-console.log("script loaded");
