@@ -22,7 +22,13 @@ h1 {
 	float: left;
 	position: relative; 
 	text-align: center;
-	
+}
+
+.mistakeBox{
+	height: 2.75em;
+	width : 2.75em;
+	margin: 2.5px;
+	border-radius: 12.5px;	
 }
 
 .lockCircle{
@@ -130,7 +136,7 @@ div.solid {border-style: solid;}
 }
 
 .upperText{
-	margin-top:1em;
+  margin-top:1em;
 	margin-bottom:0;
 }
 
@@ -145,4 +151,17 @@ div.solid {border-style: solid;}
   width: 72em;
   justify-content: center;
   display: block;
+}
+
+#miskateWrapper{
+  width: 16.5em;
+}
+
+.checkboxRow{
+  height: 2.75em;
+  display: block;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }
