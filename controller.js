@@ -22,9 +22,49 @@ function markBox(source, color) {
 	if (gameOver) {
 		return;
 	}
+
 	let valueClicked = source.innerText;
+	if (color == "green" || color == "blue") {
+		valueClicked = mapGreenAndBlueToIndex(valueClicked);
+	}
 
+	if (valueClicked == oLowestBox[color] || (valueClicked == lockEmoji && oLowestBox[color] == maxNumber)) {
+		undoLastCheck(source, color);
+	} else {
+		addScore(source, valueClicked, color);
+	}
+};
 
+function mapGreenAndBlueToIndex(valueClicked) {
+	//reverse green and blue
+	return valueClicked === lockEmoji ? lockEmoji : valueClicked = 14 - valueClicked;
+}
+
+function undoLastCheck(source, color) {
+	source.classList.remove("checked");
+	oLowestBox[color] = parseInt(getLowestCheckedOfColor(color)); // next lowest
+	oNumberMarkedBoxes[color]--;
+};
+
+function getLowestCheckedOfColor(color) {
+	if (color == "green" || color == "blue") {
+
+		for (let i = 2; i < 13; i++) {
+			if ($(`#${i}${color}`)[0].className.indexOf("checked") > 0) {
+				return mapGreenAndBlueToIndex(i);
+			}
+		}
+	} else {
+		for (let i = 12; i > 1; i--) {
+			if ($(`#${i}${color}`)[0].className.indexOf("checked") > 0) {
+				return i;
+			}
+		}
+	}
+	return 0;
+}
+
+function addScore(source, valueClicked, color) {
 	if (valueClicked === lockEmoji) {
 		if (oLowestBox[color] == 12) {
 			source.classList.add("checked");
@@ -33,11 +73,6 @@ function markBox(source, color) {
 
 		}
 		return;
-	}
-
-	if (color == "green" || color == "blue"){
-		//reverse green and blue
-		valueClicked = 14 - valueClicked;
 	}
 
 	if (valueClicked == 12 && oNumberMarkedBoxes[color] > 4) {
@@ -51,7 +86,6 @@ function markBox(source, color) {
 		oLowestBox[color] = parseInt(valueClicked);
 		oNumberMarkedBoxes[color]++;
 	}
-
 };
 
 function evaluateGameState() {
