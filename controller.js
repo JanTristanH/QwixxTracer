@@ -1,14 +1,3 @@
-/*$(document).ready(function() {
-	$('div.numberBox').click(function(s) {
-//		s.target.innerText // value of box
-	debugger
-		if (!s.target.classList.contains("checked") && s.delegateTarget.childElementCount){
-			s.target.classList.add("checked") //p tag to modify
-		}
-		
-	});
-});
-*/
 const lockEmoji = "🔓";
 const maxNumber = 13;
 let gameOver = false;
@@ -33,8 +22,10 @@ function markBox(source, color) {
 	if (gameOver) {
 		return;
 	}
+	let valueClicked = source.innerText;
 
-	if (source.innerText === lockEmoji) {
+
+	if (valueClicked === lockEmoji) {
 		if (oLowestBox[color] == 12) {
 			source.classList.add("checked");
 			oLowestBox[color] = maxNumber;
@@ -44,15 +35,20 @@ function markBox(source, color) {
 		return;
 	}
 
-	if (source.innerText == 12 && oNumberMarkedBoxes[color] > 4) {
+	if (color == "green" || color == "blue"){
+		//reverse green and blue
+		valueClicked = 14 - valueClicked;
+	}
+
+	if (valueClicked == 12 && oNumberMarkedBoxes[color] > 4) {
 		source.classList.add("checked");
-		oLowestBox[color] = parseInt(source.innerText);
+		oLowestBox[color] = parseInt(valueClicked);
 		oNumberMarkedBoxes[color]++;
 	}
 
-	if (oLowestBox[color] < source.innerText && source.innerText < 12) {
+	if (oLowestBox[color] < valueClicked && valueClicked < 12) {
 		source.classList.add("checked");
-		oLowestBox[color] = parseInt(source.innerText);
+		oLowestBox[color] = parseInt(valueClicked);
 		oNumberMarkedBoxes[color]++;
 	}
 
@@ -82,11 +78,7 @@ function markBoxMistake(source) {
 };
 
 function convertScore(n) {
-	let score = 0;
-	for (let i = 1; i <= n; i++) {
-		score += i;
-	}
-	return score;
+	return (n * (n + 1)) / 2;;
 }
 
 function onEvaluate() {
