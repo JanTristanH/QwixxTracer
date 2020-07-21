@@ -126,6 +126,10 @@ background-color:#b5b800;
 background-color:#000052;
 }
 
+.greyBorder{
+  border-color:#404040;
+}
+
 .backgroundWapper{
 	height: 6em;
   display: flex;
