@@ -18,10 +18,7 @@ let oNumberMarkedBoxes = {
 };
 
 function markBox(source, color) {
-	evaluateGameState();
-	if (gameOver) {
-		return;
-	}
+	
 
 	let valueClicked = source.innerText;
 	if (color == "green" || color == "blue") {
@@ -31,13 +28,17 @@ function markBox(source, color) {
 	if (valueClicked == oLowestBox[color] || (valueClicked == lockEmoji && oLowestBox[color] == maxNumber)) {
 		undoLastCheck(source, color);
 	} else {
+		evaluateGameState();
+	if (gameOver) {
+		return;
+	}
 		addScore(source, valueClicked, color);
 	}
 };
 
 function mapGreenAndBlueToIndex(valueClicked) {
 	//reverse green and blue
-	return valueClicked === lockEmoji ? lockEmoji : valueClicked = 14 - valueClicked;
+	return valueClicked == lockEmoji ? lockEmoji : valueClicked = 14 - valueClicked;
 }
 
 function undoLastCheck(source, color) {
