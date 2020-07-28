@@ -38,7 +38,7 @@ function markBox(source, color) {
 
 function mapGreenAndBlueToIndex(valueClicked) {
 	//reverse green and blue
-	return valueClicked == lockEmoji ? lockEmoji : 14 - valueClicked;
+	return String(valueClicked == lockEmoji ? lockEmoji : 14 - valueClicked);
 }
 
 function undoLastCheck(source, color) {
@@ -66,7 +66,7 @@ function getLowestCheckedOfColor(color) {
 }
 
 function addScore(source, valueClicked, color) {
-	if (valueClicked.indexOf(lockEmoji) > -1) {
+	if (valueClicked.includes(lockEmoji)) {
 		if (oLowestBox[color] == 12) {
 			source.classList.add("checked");
 			oLowestBox[color] = maxNumber;
