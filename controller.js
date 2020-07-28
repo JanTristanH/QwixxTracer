@@ -38,7 +38,7 @@ function markBox(source, color) {
 
 function mapGreenAndBlueToIndex(valueClicked) {
 	//reverse green and blue
-	return String(valueClicked == lockEmoji ? lockEmoji : 14 - valueClicked);
+	return String(valueClicked.includes(lockEmoji) ? lockEmoji : 14 - valueClicked);
 }
 
 function undoLastCheck(source, color) {
