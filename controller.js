@@ -66,7 +66,7 @@ function getLowestCheckedOfColor(color) {
 }
 
 function addScore(source, valueClicked, color) {
-	if (valueClicked == lockEmoji) {
+	if (valueClicked.indexOf(lockEmoji) > -1) {
 		if (oLowestBox[color] == 12) {
 			source.classList.add("checked");
 			oLowestBox[color] = maxNumber;
