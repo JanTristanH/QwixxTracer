@@ -20,7 +20,7 @@ let oNumberMarkedBoxes = {
 function markBox(source, color) {
 	
 
-	let valueClicked = source.innerText.s.replaceAll(/\n/gi,"");
+	let valueClicked = source.innerText.replace(/\n/gi,"");
 	if (color == "green" || color == "blue") {
 		valueClicked = mapGreenAndBlueToIndex(valueClicked);
 	}
