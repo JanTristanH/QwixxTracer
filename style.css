@@ -9,6 +9,8 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-left: .8em;
+  padding-right: .8em;
 }
 
 
