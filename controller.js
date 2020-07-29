@@ -43,28 +43,17 @@ function undoLastCheck(source, color) {
 };
 
 function addScore(source, valueClicked, color) {
-	if (valueClicked == maxNumber) {
-		if (last(oLowestBox[color]) == 12) {
-			source.classList.add(classChecked);
-
-			oLowestBox[color].push(valueClicked);
-
-		}
-		return;
-	}
-
-	if (valueClicked == 12 && oLowestBox[color].length > 4) {
+	if (isLegalMove(valueClicked,color)) {
 		source.classList.add(classChecked);
 		oLowestBox[color].push(valueClicked);
-
-	}
-
-	if (last(oLowestBox[color]) < valueClicked && valueClicked < 12) {
-		source.classList.add(classChecked);
-		oLowestBox[color].push(valueClicked);
-
 	}
 };
+
+function isLegalMove(indexClicked, color){
+	return last(oLowestBox[color]) < indexClicked && indexClicked < 12
+			|| indexClicked == 12 && oLowestBox[color].length > 4
+			|| (indexClicked == maxNumber && last(oLowestBox[color]) == 12);
+}
 
 function evaluateGameState() {
 	if (oLowestBox.mistake.length > 3) {
