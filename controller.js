@@ -1,12 +1,18 @@
 const lockEmoji = "🔓";
 const maxNumber = 13;
+const classChecked = "checked";
+const colorRed = "red";
+const colorYellow = "yellow";
+const colorGreen = "green";
+const colorBlue = "blue";
 let gameOver = false;
 
+
 let oLowestBox = {
-	red: 0,
-	yellow: 0,
-	green: 0,
-	blue: 0
+	red: [],
+	yellow: [],
+	green: [],
+	blue: []
 };
 
 let oNumberMarkedBoxes = {
@@ -17,33 +23,32 @@ let oNumberMarkedBoxes = {
 	mistake: 0
 };
 
-function markBox(source, color) {
-	
+function last(array) {
+	let res = array[array.length - 1];
+	return res ? res : 0;
+}
 
-	let valueClicked = source.innerText.replace(/\n/gi,"");
-	if (color == "green" || color == "blue") {
-		valueClicked = mapGreenAndBlueToIndex(valueClicked);
-	}
+function markBox(source, color, positionInRow) {
 
-	if (valueClicked == oLowestBox[color] || (valueClicked == lockEmoji && oLowestBox[color] == maxNumber)) {
+	let valueClicked = positionInRow ? positionInRow : source.innerText.replace(/\n/gi, "");
+
+
+	if (valueClicked == last(oLowestBox[color])) {
 		undoLastCheck(source, color);
-	} else {
-		evaluateGameState();
-	if (gameOver) {
-		return;
-	}
+	} else if (!isGameOver() && valueClicked > last(oLowestBox[color])) {
 		addScore(source, valueClicked, color);
 	}
 };
 
-function mapGreenAndBlueToIndex(valueClicked) {
-	//reverse green and blue
-	return String(String(valueClicked).includes(lockEmoji) ? lockEmoji : 14 - valueClicked);
-}
+function isGameOver() {
+	evaluateGameState();
+	return gameOver;
+};
 
 function undoLastCheck(source, color) {
 	source.classList.remove("checked");
-	oLowestBox[color] = parseInt(getLowestCheckedOfColor(color)); // next lowest
+	oLowestBox[color].pop()
+	//oLowestBox[color] = parseInt(getLowestCheckedOfColor(color)); // next lowest
 	oNumberMarkedBoxes[color]--;
 };
 
@@ -52,7 +57,7 @@ function getLowestCheckedOfColor(color) {
 
 		for (let i = 2; i < 13; i++) {
 			if ($(`#${i}${color}`)[0].className.indexOf("checked") > 0) {
-				return mapGreenAndBlueToIndex(i);
+				return i;
 			}
 		}
 	} else {
@@ -66,25 +71,25 @@ function getLowestCheckedOfColor(color) {
 }
 
 function addScore(source, valueClicked, color) {
-	if (valueClicked.includes(lockEmoji)) {
-		if (oLowestBox[color] == 12) {
+	if (valueClicked == maxNumber) {
+		if (last(oLowestBox[color]) == 12) {
 			source.classList.add("checked");
-			oLowestBox[color] = maxNumber;
-			oNumberMarkedBoxes[color]++;
 
+			oLowestBox[color].push(valueClicked);
+			oNumberMarkedBoxes[color]++;
 		}
 		return;
 	}
 
-	if (valueClicked == 12 && oNumberMarkedBoxes[color] > 4) {
+	if (valueClicked == 12 && oLowestBox[color].length > 4) {
 		source.classList.add("checked");
-		oLowestBox[color] = parseInt(valueClicked);
+		oLowestBox[color].push(valueClicked);
 		oNumberMarkedBoxes[color]++;
 	}
 
-	if (oLowestBox[color] < valueClicked && valueClicked < 12) {
+	if (last(oLowestBox[color]) < valueClicked && valueClicked < 12) {
 		source.classList.add("checked");
-		oLowestBox[color] = parseInt(valueClicked);
+		oLowestBox[color].push(valueClicked);
 		oNumberMarkedBoxes[color]++;
 	}
 };
@@ -94,10 +99,10 @@ function evaluateGameState() {
 		gameOver = true;
 	} else {
 		let closedRows = 0;
-		oLowestBox.red == maxNumber ? closedRows++ : 0;
-		oLowestBox.yellow == maxNumber ? closedRows++ : 0;
-		oLowestBox.green == maxNumber ? closedRows++ : 0;
-		oLowestBox.blue == maxNumber ? closedRows++ : 0;
+		last(oLowestBox.red) == maxNumber ? closedRows++ : 0;
+		last(oLowestBox.yellow) == maxNumber ? closedRows++ : 0;
+		last(oLowestBox.green) == maxNumber ? closedRows++ : 0;
+		last(oLowestBox.blue) == maxNumber ? closedRows++ : 0;
 		gameOver = closedRows > 1;
 
 	}
