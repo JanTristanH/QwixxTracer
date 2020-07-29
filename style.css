@@ -4,7 +4,7 @@ h1 {
 }
 
 .row {
-  width: 100%;
+  display: flex;
   height: 7em;
   display: flex;
   align-items: center;
@@ -137,6 +137,10 @@ h1 {
   border-color: #404040;
 }
 
+.lightgrey{
+  background-color: #D3D3D3;
+}
+
 .backgroundWapper {
   height: 6em;
   display: flex;
@@ -173,13 +177,26 @@ div.solid {
   margin: 0;
 }
 
-.app-container {
-  background: #D3D3D3;
+.extraWrapper{
+  margin: 0 auto;
   border-radius: 4px;
-  min-height: 500px;
-  width: 72em;
-  justify-content: center;
-  display: block;
+}
+
+.app-container {
+  background: #bde0fd;
+  width: 100%;
+  /* Firefox */
+  display: -moz-box;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+  /* Safari and Chrome */
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  /* W3C */
+  display: box;
+  box-pack: center;
+  box-align: center;
 }
 
 #miskateWrapper {
@@ -219,4 +236,8 @@ div.solid {
   border-style: solid;
   border-width: .3em;
   ;
+}
+
+.settingsRow{
+  background-color: transparent;
 }
