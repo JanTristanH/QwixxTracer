@@ -9,6 +9,8 @@ const mistake = "mistake";
 const placeholder = "x";
 const endResultIdentifier = "#endResult";
 const interimResultBackItdentifier = "Result";
+const aIndentifierWrappersToRefresh = ["redWrapper","yellowWrapper","greenWrapper","blueWrapper","checkboxRow"];
+const calculatePoints = "Punkte berechnen";
 
 let gameOver = false;
 let oLowestBox = {
@@ -99,3 +101,24 @@ function fillInterimResult() {
 			key == mistake ? oLowestBox[key].length * 5 : convertScore(oLowestBox[key].length));
 	}
 };
+
+function onReset(){
+	oLowestBox = {
+		red: [],
+		yellow: [],
+		green: [],
+		blue: [],
+		mistake: []
+	};
+	aIndentifierWrappersToRefresh.forEach( e =>{
+		$("#"+ e).children('div').each((idx,itm) => itm.classList.remove(classChecked));
+	})
+	for (const [key, value] of Object.entries(oLowestBox)) {
+		//console.log(`${key}Result: ${value}`);
+		$(`#${key}${interimResultBackItdentifier}`).empty();
+		$(endResultIdentifier).empty();
+		$(endResultIdentifier).css("margin-top", ".3em");
+		$(endResultIdentifier).append(calculatePoints);
+	}
+	
+}
