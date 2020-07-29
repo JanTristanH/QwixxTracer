@@ -5,22 +5,18 @@ const colorRed = "red";
 const colorYellow = "yellow";
 const colorGreen = "green";
 const colorBlue = "blue";
+const mistake = "mistake";
+const placeholder = "x";
+const endResultIdentifier = "#endResult";
+const interimResultBackItdentifier = "Result";
+
 let gameOver = false;
-
-
 let oLowestBox = {
 	red: [],
 	yellow: [],
 	green: [],
-	blue: []
-};
-
-let oNumberMarkedBoxes = {
-	red: 0,
-	yellow: 0,
-	green: 0,
-	blue: 0,
-	mistake: 0
+	blue: [],
+	mistake: []
 };
 
 function last(array) {
@@ -29,14 +25,10 @@ function last(array) {
 }
 
 function markBox(source, color, positionInRow) {
-
-	let valueClicked = positionInRow ? positionInRow : source.innerText.replace(/\n/gi, "");
-
-
-	if (valueClicked == last(oLowestBox[color])) {
+	if (positionInRow == last(oLowestBox[color])) {
 		undoLastCheck(source, color);
-	} else if (!isGameOver() && valueClicked > last(oLowestBox[color])) {
-		addScore(source, valueClicked, color);
+	} else if (!isGameOver() && positionInRow > last(oLowestBox[color])) {
+		addScore(source, positionInRow, color);
 	}
 };
 
@@ -46,56 +38,36 @@ function isGameOver() {
 };
 
 function undoLastCheck(source, color) {
-	source.classList.remove("checked");
+	source.classList.remove(classChecked);
 	oLowestBox[color].pop()
-	//oLowestBox[color] = parseInt(getLowestCheckedOfColor(color)); // next lowest
-	oNumberMarkedBoxes[color]--;
 };
-
-function getLowestCheckedOfColor(color) {
-	if (color == "green" || color == "blue") {
-
-		for (let i = 2; i < 13; i++) {
-			if ($(`#${i}${color}`)[0].className.indexOf("checked") > 0) {
-				return i;
-			}
-		}
-	} else {
-		for (let i = 12; i > 1; i--) {
-			if ($(`#${i}${color}`)[0].className.indexOf("checked") > 0) {
-				return i;
-			}
-		}
-	}
-	return 0;
-}
 
 function addScore(source, valueClicked, color) {
 	if (valueClicked == maxNumber) {
 		if (last(oLowestBox[color]) == 12) {
-			source.classList.add("checked");
+			source.classList.add(classChecked);
 
 			oLowestBox[color].push(valueClicked);
-			oNumberMarkedBoxes[color]++;
+
 		}
 		return;
 	}
 
 	if (valueClicked == 12 && oLowestBox[color].length > 4) {
-		source.classList.add("checked");
+		source.classList.add(classChecked);
 		oLowestBox[color].push(valueClicked);
-		oNumberMarkedBoxes[color]++;
+
 	}
 
 	if (last(oLowestBox[color]) < valueClicked && valueClicked < 12) {
-		source.classList.add("checked");
+		source.classList.add(classChecked);
 		oLowestBox[color].push(valueClicked);
-		oNumberMarkedBoxes[color]++;
+
 	}
 };
 
 function evaluateGameState() {
-	if (oNumberMarkedBoxes.mistake > 3) {
+	if (oLowestBox.mistake.length > 3) {
 		gameOver = true;
 	} else {
 		let closedRows = 0;
@@ -113,8 +85,8 @@ function markBoxMistake(source) {
 	if (gameOver) {
 		return;
 	}
-	source.classList.add("checked");
-	oNumberMarkedBoxes.mistake++;
+	source.classList.add(classChecked);
+	oLowestBox.mistake.push(placeholder);
 };
 
 function convertScore(n) {
@@ -123,18 +95,18 @@ function convertScore(n) {
 
 function onEvaluate() {
 	fillInterimResult();
-	let score = convertScore(oNumberMarkedBoxes.red) + convertScore(oNumberMarkedBoxes.yellow) + convertScore(oNumberMarkedBoxes.green) + convertScore(oNumberMarkedBoxes.blue);
-	score -= oNumberMarkedBoxes.mistake * 5;
-	$("#result").empty();
-	$("#result").css("margin", "1em");
-	$("#result").append(score);
+	let score = convertScore(oLowestBox.red.length) + convertScore(oLowestBox.yellow.length) + convertScore(oLowestBox.green.length) + convertScore(oLowestBox.blue.length);
+	score -= oLowestBox.mistake.length * 5;
+	$(endResultIdentifier).empty();
+	$(endResultIdentifier).css("margin", "1em");
+	$(endResultIdentifier).append(score);
 };
 
 function fillInterimResult() {
-	for (const [key, value] of Object.entries(oNumberMarkedBoxes)) {
+	for (const [key, value] of Object.entries(oLowestBox)) {
 		//console.log(`${key}Result: ${value}`);
-		$(`#${key}Result`).empty();
-		$(`#${key}Result`).append(
-			key == "mistake" ? value * 5 : convertScore(value));
+		$(`#${key}${interimResultBackItdentifier}`).empty();
+		$(`#${key}${interimResultBackItdentifier}`).append(
+			key == mistake ? oLowestBox[key].length * 5 : convertScore(oLowestBox[key].length));
 	}
 };
